@@ -22,9 +22,27 @@ Thoughts:
 - 
 */
 
-void findSpecificProbability(vector<double> mainPercentages, vector<double> otherPercentages, vector<string> vectorOfCharsMain, vector<string> vectorOfCharsOther, vector<string> vectorOfDescriptionsMain, vector<string> vectorOfDescriptionsOther) {
+void findSpecificProbability(vector<double> mainPercentages, vector<double> otherPercentages, vector<string> vectorOfCharsMain, vector<string> vectorOfCharsOther, vector<string> vectorOfDescriptionsMain, vector<string> vectorOfDescriptionsOther, string desiredChar) {
 
-    
+    cout << endl;
+
+    for (int i = 0; i < vectorOfCharsMain.size(); i++) {
+
+        if (vectorOfCharsMain[i] == desiredChar) {
+
+            cout << "There is a " << mainPercentages[i] << " percent chance of " << vectorOfCharsMain[i] << "(" << vectorOfDescriptionsMain[i] << ")" << " happening!" << endl;
+
+        }
+
+        else if (vectorOfCharsOther[i] == desiredChar) {
+
+            cout << "There is a " << otherPercentages[i] << " percent chance of " << vectorOfCharsOther[i] << "(" << vectorOfDescriptionsOther[i] << ")" << " happening!" << endl;
+
+        } 
+
+    }
+
+    cout << endl;
 
 }
 
@@ -37,6 +55,8 @@ void displayPercentageData(vector<double> mainPercentages, vector<double> otherP
         cout << "There is a " << otherPercentages[i] << " percent chance of " << vectorOfCharsOther[i] << " happening!" << endl;
 
     }
+
+    cout << endl;
 
 }
 
@@ -297,7 +317,12 @@ int main() {
 
         else if (userInputString == "3") {
 
-            
+            string desiredChar;
+
+            cout << "Enter the character denoting the probability you would like to see: ";
+            getline(cin, desiredChar);
+
+            findSpecificProbability(mainPercentages, otherPercentages, vectorOfCharsMain, vectorOfCharsOther, vectorOfDescriptionsMain, vectorOfDescriptionsOther, desiredChar);
 
         }
 
