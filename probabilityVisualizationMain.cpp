@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
+#include <cmath>
 
 using namespace std;
 
@@ -20,6 +21,22 @@ Thoughts:
 
 - 
 */
+
+void getUserCharData(string &mainProbability, string &otherProbability, string &mainProbabilityDescription, string &otherProbabilityDescription) {
+
+    cout << "Enter character to denote the main probability you gave earlier: ";
+    getline(cin, mainProbability);
+
+    cout << "Describe the main probability: ";
+    getline(cin, mainProbabilityDescription);
+
+    cout << "Enter character to denote the other probability: ";
+    getline(cin, otherProbability);
+
+    cout << "Describe the other probability: ";
+    getline(cin, otherProbabilityDescription);
+
+}
 
 void getFractionValues(string userInputFraction, string &denominator, string &numerator) {
 
@@ -65,13 +82,13 @@ int main() {
 
     cout << "Welcome to the probability grid!" << endl;
 
+    vector<char> vectorOfChars;
+
     while (flag == false) {
 
         string userInputString;
         displayMenu();
         getline(cin, userInputString);
-
-        vector<char> vectorOfChars;
 
         if (userInputString == "1") {
 
@@ -97,25 +114,18 @@ int main() {
             string mainProbabilityDescription;
             string otherProbabilityDescription;
 
-            cout << "Enter character to denote the main probability you gave earlier: ";
-            getline(cin, mainProbability);
-
-            cout << "Describe the main probability: ";
-            getline(cin, mainProbabilityDescription);
-
-            cout << "Enter character to denote the other probability: ";
-            getline(cin, otherProbability);
-
-            cout << "Describe the other probability: ";
-            getline(cin, otherProbabilityDescription);
+            getUserCharData(mainProbability, otherProbability, mainProbabilityDescription, otherProbabilityDescription);
 
             cout << mainProbability << " - " << mainProbabilityDescription << endl;
             cout << otherProbability << " - " << otherProbabilityDescription << endl;
 
+            bool flag2 = false;
+
             for (int i = 0; i < totalNumOfGrids; i++) {
 
-                if (i % 10 == 0) {
+                if (i >= numeratorInt && flag2 == false) {
                     cout << endl;
+                    flag2 = true;
                 }
 
                 if (i < numeratorInt) {
@@ -137,13 +147,53 @@ int main() {
 
             cout << endl;
 
-            flag = true;
-
         }
+
+        /*
+        This else if statement will ask the user what character of the grid they want to edit, and then essentially repeat most of the functionality of else if 1 for that part of the grid
+        In the description above the grid, say that the new chars are a subset of their old char
+        */
 
         else if (userInputString == "2") {
             
-            
+            string desiredCharToChange;
+    
+            cout << "What part of the current probability grid would you like to change? (input the character that represents that gridspace) ";
+            getline(cin, desiredCharToChange);
+
+            char desiredChar = desiredCharToChange[0];
+
+            int vectorSize = vectorOfChars.size();
+
+            int numOfChars = 0;
+
+            for (int i = 0; i < vectorSize; i++) {
+                
+                if (vectorOfChars[i] == desiredChar) {
+
+                    numOfChars++;
+
+                }
+
+            }
+
+            string userInputFraction;
+            string denominator;
+            string numerator;
+
+            cout << "What is the probability of this instance happening inside the instance you have chosen (enter your input as a fraction with /) ";
+            getline(cin, userInputFraction);
+
+            getFractionValues(userInputFraction, denominator, numerator);
+
+            int denominatorInt = stoi(denominator);
+            int numeratorInt = stoi(numerator);
+
+            double userDecimal = (float)numeratorInt / (float)denominatorInt;
+
+            int finalUserIntNumerator = round(userDecimal * (float)numOfChars);
+
+            flag = true;
 
         }
 
