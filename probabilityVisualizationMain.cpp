@@ -76,7 +76,7 @@ void printUserCharData(vector<string> vectorOfCharsMain, vector<string> vectorOf
 
 void getUserCharData(string &mainProbability, string &otherProbability, string &mainProbabilityDescription, string &otherProbabilityDescription, string charToChange) {
 
-    cout << "Enter character to denote the main probability you gave earlier: ";
+    cout << "Enter character to denote the probability you gave earlier: ";
     getline(cin, mainProbability);
 
     cout << "Describe the main probability: ";
@@ -127,8 +127,8 @@ void getFractionValues(string userInputFraction, string &denominator, string &nu
 void displayMenu() {
 
     cout << "Choose from an option below (remember to input a number corresponding to that option): " << endl;
-    cout << "1. Start a probability grid" << endl;
-    cout << "2. Edit part of the probablity grid (Instructions will follow if you choose this option)" << endl;
+    cout << "1. Start a probability calculation" << endl;
+    cout << "2. Edit part of the probablity calculation (Instructions will follow if you choose this option)" << endl;
     cout << "3. Find probability of a specific instance (using one of your chosen characters)" << endl;
     cout << "4. Quit" << endl;
 
@@ -138,7 +138,7 @@ int main() {
 
     bool flag = false;
 
-    cout << "Welcome to the probability grid!" << endl;
+    cout << "Welcome to the probability calculator!" << endl;
 
     vector<string> vectorOfCharsMain;
     vector<string> vectorOfCharsOther;
@@ -202,32 +202,6 @@ int main() {
 
             displayPercentageData(mainPercentages, otherPercentages, vectorOfCharsMain, vectorOfCharsOther);
 
-            /*bool flag2 = false;
-
-            for (int i = 0; i < totalNumOfGrids; i++) {
-
-                if (i >= numeratorInt && flag2 == false) {
-                    cout << endl;
-                    flag2 = true;
-                }
-
-                if (i < numeratorInt) {
-                    
-                    vectorOfChars.push_back(mainProbability[0]);
-
-                    cout << "[" << mainProbability << "]";
-
-                }
-
-                else if (i >= numeratorInt) {
-
-                    vectorOfChars.push_back(otherProbability[0]);
-
-                    cout << "[" << otherProbability << "]";
-                }
-                
-            }*/
-
             cout << endl;
 
         }
@@ -241,7 +215,7 @@ int main() {
             
             string desiredCharToChange;
     
-            cout << "What part of the current probability grid would you like to change? (input the character that represents that gridspace) ";
+            cout << "What part of the current probability calculation would you like to change? (input the character that represents that probability) ";
             getline(cin, desiredCharToChange);
 
             string userInputFraction;
@@ -284,18 +258,6 @@ int main() {
             string otherProbabilityDescription;
 
             getUserCharData(mainProbability, otherProbability, mainProbabilityDescription, otherProbabilityDescription, desiredCharToChange);
-
-            /*int vectorSize = vectorOfChars.size();
-
-            for (int i = 0; i < vectorSize; i++) {
-                
-                if (vectorOfChars[i] == desiredCharToChange) {
-
-                    
-
-                }
-
-            }*/
 
             vectorOfCharsMain.push_back(mainProbability);
             vectorOfCharsOther.push_back(otherProbability);
